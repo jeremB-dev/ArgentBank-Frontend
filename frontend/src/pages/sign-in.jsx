@@ -1,15 +1,40 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../store/authSlice";
 import Button from "../components/Button/Button";
 
 const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [erreur] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { status, error } = useSelector((state) => state.auth);
 
-  const handlelogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Handle sign in logic here
+    try {
+      const resultAction = await dispatch(
+        loginUser({
+          email: username,
+          password,
+        })
+      );
+
+      if (loginUser.fulfilled.match(resultAction)) {
+        navigate("/user");
+      }
+
+      // Si "rememberMe" est coché, stocker le token dans le localStorage
+      if (rememberMe) {
+        localStorage.setItem("remeberedEmail", username);
+      } else {
+        localStorage.removeItem("rememberedEmail");
+      }
+    } catch (error) {
+      console.error("Failed to login", error);
+    }
   };
 
   const handleRememberMe = (e) => {
@@ -21,11 +46,11 @@ const SignIn = () => {
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
-        <form onSubmit={handlelogin}>
+        <form onSubmit={handleLogin}>
           <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Email</label>
             <input
-              type="text"
+              type="email"
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -52,9 +77,14 @@ const SignIn = () => {
             <label htmlFor="remember-me">Remember me</label>
           </div>
 
-          <Button btnText="Sign In" className="edit-button" type="submit" />
+          <Button
+            btnText={status === "loading" ? "loading..." : "Sign In"}
+            className="edit-button"
+            type="submit"
+            disabled={status === "loading"}
+          />
         </form>
-        {erreur && <p className="errorConexion">{erreur}</p>}
+        {error && <p className="errorConexion">{error}</p>}
       </section>
     </main>
   );

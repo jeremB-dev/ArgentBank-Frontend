@@ -5,6 +5,8 @@ import Hero from "./components/Hero/Hero";
 import Home from "./pages/home";
 import User from "./pages/user";
 import Footer from "./components/Footer/Footer";
+import PrivateRoute from "./components/PrivateRoute/privateRoute";
+import Error from "./pages/error";
 
 const App = () => {
   return (
@@ -15,7 +17,15 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/hero" element={<Hero />} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/user" element={<User />} />
+          <Route
+            path="/user"
+            element={
+              <PrivateRoute>
+                <User />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile } from "../store/authSlice";
 import Account from "../components/Account/Account";
 import Profile from "../components/Profile/Profile";
 import accountData from "../data/accountData";
 
 const User = () => {
-  const [userName, setUserName] = useState("Tony Jarvis");
+  const dispatch = useDispatch();
+  const { userData, token } = useSelector((state) => state.auth);
   const [isEditing, setIsEditing] = useState(false);
 
+  useEffect(() => {
+    if (token && !userData) {
+      dispatch(getUserProfile());
+    }
+  }, [dispatch, token, userData]);
+
   const handleEditName = (newName) => {
-    setUserName(newName);
+    // Ici vous ajouterez plus tard la mise à jour du profil
+    console.log(`New name: ${newName}`);
     setIsEditing(false);
   };
 
   return (
     <main className="main bg-dark">
       <Account
-        userName={userName}
+        userName={userData ? `${userData.firstName} ${userData.lastName}` : ""}
         onEdit={() => setIsEditing(true)}
         accountData={accountData}
       />
@@ -24,7 +34,9 @@ const User = () => {
         <Profile
           onClose={() => setIsEditing(false)}
           onSave={handleEditName}
-          currentName={userName}
+          currentName={
+            userData ? `${userData.firstName} ${userData.lastName}` : ""
+          }
         />
       )}
     </main>

@@ -35,3 +35,23 @@
   @extend %button-base;
   padding: 10px;
 }
+
+.transaction-button {
+  display: block;
+  width: 200px;
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken(#00bc77, 10%);
+  }
+}
