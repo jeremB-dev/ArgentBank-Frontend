@@ -1,0 +1,37 @@
+%button-base {
+  padding: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-color: #00bc77; // Ajout de la bordure complète
+  background-color: #00bc77;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #00a067;
+  }
+}
+
+.sign-in-button {
+  @extend %button-base;
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.transaction-button {
+  @extend %button-base;
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+
+  @media (min-width: 720px) {
+    width: 200px;
+  }
+}
+
+.edit-button {
+  @extend %button-base;
+  padding: 10px;
+}

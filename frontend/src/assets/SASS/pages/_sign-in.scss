@@ -1,0 +1,96 @@
+.main {
+  flex: 1;
+
+  &.bg-dark {
+    background-color: #12002b;
+    padding-top: 2rem; // Espace entre le header et le formulaire
+    min-height: 85.5vh; // Hauteur totale de la vue
+    padding-bottom: 2rem;
+  }
+}
+
+.sign-in-content {
+  box-sizing: border-box;
+  background-color: white;
+  width: 300px;
+  padding: 2rem;
+  margin: 0 auto; // Centre horizontalement
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  form {
+    margin-top: 1rem;
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+
+  label {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    &::placeholder {
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #00bc77;
+    }
+  }
+}
+
+.input-remember {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+
+  input[type="checkbox"] {
+    margin: 0;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+
+    &:focus {
+      outline: 2px solid #00bc77;
+      outline-offset: 2px;
+    }
+  }
+
+  label {
+    margin-left: 0.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+.sign-in-icon {
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.errorConexion {
+  color: #d63031;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0.5rem;
+  background-color: rgba(214, 48, 49, 0.1);
+  border-radius: 4px;
+}

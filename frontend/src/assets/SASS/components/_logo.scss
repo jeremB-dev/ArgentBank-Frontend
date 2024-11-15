@@ -1,0 +1,9 @@
+.main-nav-logo {
+  display: flex;
+  align-items: center;
+
+  &-image {
+    max-width: 100%;
+    width: 200px;
+  }
+}

@@ -1,0 +1,18 @@
+@use "./assets/SASS/resets";
+
+// Components
+@use "./assets/SASS/components/account";
+@use "./assets/SASS/components/button";
+@use "./assets/SASS/components/profile";
+@use "./assets/SASS/components/features";
+@use "./assets/SASS/components/footer";
+@use "./assets/SASS/components/header";
+@use "./assets/SASS/components/headerAccount";
+@use "./assets/SASS/components/hero";
+@use "./assets/SASS/components/logo";
+@use "./assets/SASS/components/navBar";
+
+// Pages
+@use "./assets/SASS/pages/home";
+@use "./assets/SASS/pages/sign-in";
+@use "./assets/SASS/pages/user";
