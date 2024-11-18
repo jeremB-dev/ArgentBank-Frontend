@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Actions asynchrones pour les appels API, pour la connexion
 export const loginUser = createAsyncThunk(
   "auth/login",
-  async ({ email, password }, { rejectWithValue }) => {
+  async ({ email, password, rememberMe }, { rejectWithValue }) => {
     // Appel API pour la connexion
     try {
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
@@ -18,7 +18,11 @@ export const loginUser = createAsyncThunk(
       //console.log("Response data:", data); // Pour déboguer
 
       if (response.ok) {
-        localStorage.setItem("token", data.body.token); // Stockage du token dans le localStorage
+        if (rememberMe) {
+          localStorage.setItem("token", data.body.token); // Stocke le token localement
+        } else {
+          sessionStorage.setItem("token", data.body.token); // Stocke le token dans la session
+        }
         return data.body;
       }
       return rejectWithValue(data.message);
@@ -61,7 +65,7 @@ export const getUserProfile = createAsyncThunk(
 // Pour mettre à jour le profil de l'utilisateur
 export const updateUserProfile = createAsyncThunk(
   "auth/updateProfile",
-  async ({ firstName, lastName }, { getState, rejectWithValue }) => {
+  async ({ userName }, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
       // Appel API pour mettre à jour le profil
@@ -73,7 +77,7 @@ export const updateUserProfile = createAsyncThunk(
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ firstName, lastName }), // Corps de la requête; nouvelles données
+          body: JSON.stringify({ userName }), // Corps de la requête; nouvelles données
         }
       );
 

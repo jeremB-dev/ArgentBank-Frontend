@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile } from "../store/authSlice";
+import { getUserProfile, updateUserProfile } from "../store/authSlice";
+import HeaderAccount from "../components/Header-account/headerAccount";
 import Account from "../components/Account/Account";
 import Profile from "../components/Profile/Profile";
 import accountData from "../data/accountData";
+import Button from "../components/Button/Button";
 
 const User = () => {
   const dispatch = useDispatch();
@@ -25,28 +27,35 @@ const User = () => {
    * @param {string} newName - Le nouveau nom de l'utilisateur.
    */
   const handleEditName = (newName) => {
-    // Ici vous ajouterez plus tard la mise à jour du profil
-    console.log(`New name: ${newName}`);
+    dispatch(updateUserProfile({ userName: newName }));
     setIsEditing(false);
   };
 
   return (
     <main className="main bg-dark">
-      <Account
-        userName={userData ? `${userData.firstName} ${userData.lastName}` : ""}
-        onEdit={() => setIsEditing(true)}
-        accountData={accountData}
-      />
+      {/* Header n'est rendu qu'une seule fois ici */}
+      <HeaderAccount userName={userData ? userData.userName : ""} />
 
-      {isEditing && (
-        <Profile
-          onClose={() => setIsEditing(false)}
-          onSave={handleEditName}
-          currentName={
-            userData ? `${userData.firstName} ${userData.lastName}` : ""
-          }
-        />
+      {/* Affichage conditionnel du bouton ou du formulaire */}
+      {!isEditing ? (
+        <div className="user-actions">
+          <Button
+            btnText="Edit Name"
+            className="edit-button"
+            onClick={() => setIsEditing(true)}
+          />
+        </div>
+      ) : (
+        <div className="edit-user-content">
+          <Profile
+            onClose={() => setIsEditing(false)}
+            onSave={handleEditName}
+            currentName={userData ? userData.userName : ""}
+          />
+        </div>
       )}
+
+      <Account accountData={accountData} />
     </main>
   );
 };

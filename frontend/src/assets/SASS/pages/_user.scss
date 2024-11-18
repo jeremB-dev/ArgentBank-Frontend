@@ -6,3 +6,14 @@
   color: #fff;
   margin-bottom: 2rem;
 }
+
+.user-actions {
+  margin-bottom: 2rem; // Ajoute de l'espace sous le bouton
+  display: flex;
+  justify-content: center; // Centre le bouton horizontalement
+}
+
+// Si vous voulez aussi ajouter un peu d'espace en haut du bouton
+.user-content {
+  margin-bottom: 1rem;
+}

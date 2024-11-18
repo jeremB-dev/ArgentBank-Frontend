@@ -21,6 +21,7 @@ const SignIn = () => {
         loginUser({
           email: username,
           password,
+          rememberMe,
         })
       );
 

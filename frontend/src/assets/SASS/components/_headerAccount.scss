@@ -1,5 +1,7 @@
+@use "../variables" as *;
+
 .header {
-  color: #fff;
+  color: $white;
   margin-bottom: 2rem; // Réduit de 2rem à 1rem
   text-align: center;
   padding-top: -2rem; // Ajout d'un padding en haut
@@ -10,15 +12,15 @@
   }
 
   .edit-button {
-    border-color: #00bc77;
-    background-color: #00bc77;
-    color: #fff;
+    border-color: $primary-color;
+    background-color: $primary-color;
+    color: $white;
     font-weight: bold;
     font-size: 13px;
     cursor: pointer;
 
     &:hover {
-      background-color: #00a067;
+      background-color: $primary-color;
     }
   }
 }

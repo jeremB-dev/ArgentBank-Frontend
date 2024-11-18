@@ -1,11 +1,8 @@
 import PropTypes from "prop-types";
-import Header from "../Header-account/headerAccount";
 
-const Account = ({ userName, onEdit, accountData }) => {
+const Account = ({ accountData }) => {
   return (
     <>
-      <Header userName={userName} onEdit={onEdit} />
-
       <h2 className="sr-only">Accounts</h2>
 
       {accountData.map((account) => (
@@ -25,8 +22,6 @@ const Account = ({ userName, onEdit, accountData }) => {
 };
 
 Account.propTypes = {
-  userName: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired,
   accountData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

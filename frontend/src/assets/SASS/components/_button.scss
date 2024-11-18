@@ -1,15 +1,18 @@
+@use "../variables" as *;
+@use "sass:color";
+
 %button-base {
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
-  border-color: #00bc77; // Ajout de la bordure complète
-  background-color: #00bc77;
-  color: #fff;
+  border-color: $primary-color; // Ajout de la bordure complète
+  background-color: $primary-color;
+  color: $white;
   cursor: pointer;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #00a067;
+    background-color: color.adjust($primary-color, $lightness: -10%);
   }
 }
 
@@ -43,15 +46,15 @@
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
+  border-color: $primary-color;
+  background-color: $primary-color;
+  color: $white;
   text-decoration: none;
   text-align: center;
   border-radius: 4px;
   cursor: pointer;
 
   &:hover {
-    background-color: darken(#00bc77, 10%);
+    background-color: color.adjust($primary-color, $lightness: -10%);
   }
 }
