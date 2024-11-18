@@ -19,7 +19,7 @@ const NavBar = () => {
   return (
     <nav className="main-nav">
       <Logo />
-      <div>
+      <div className="main-nav-links">
         {token ? (
           <>
             <Link to="/user" className="main-nav-item">

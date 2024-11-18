@@ -6,21 +6,50 @@
   align-items: center;
   padding: 5px 20px;
 
-  a {
-    font-weight: bold;
-    color: $text-color;
+  @media screen and (max-width: 720px) {
+    padding: 5px 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
 
-    &.router-link-exact-active {
-      color: $primary-color;
+.main-nav-logo {
+  display: flex;
+  align-items: center;
+
+  &-image {
+    max-width: 200px;
+
+    @media screen and (max-width: 720px) {
+      max-width: 150px;
     }
   }
+}
 
-  &-item {
-    text-decoration: none;
-    margin-right: 0.5rem;
+.main-nav-item {
+  text-decoration: none;
+  margin-right: 0.5rem;
+  text-align: center;
+  white-space: nowrap;
 
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 720px) {
+    margin: 0.35rem;
+    font-size: 1rem;
+    width: 30%;
+  }
+}
+
+.main-nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: 720px) {
+    flex-direction: row;
+    width: 100%;
   }
 }

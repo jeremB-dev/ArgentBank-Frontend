@@ -113,6 +113,7 @@ const authSlice = createSlice({
       state.error = null;
       localStorage.removeItem("token");
     },
+
     clearError: (state) => {
       state.error = null;
     },
@@ -121,7 +122,7 @@ const authSlice = createSlice({
   // Reducers pour les actions asynchrones
   extraReducers: (builder) => {
     builder
-      // Login cases
+      // ajout des cas pour loginUser
       .addCase(loginUser.pending, (state) => {
         state.status = "loading";
         state.error = null;
@@ -136,7 +137,7 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Get Profile cases
+      // ajout des cas pour getUserProfile
       .addCase(getUserProfile.pending, (state) => {
         state.status = "loading";
       })

@@ -33,7 +33,6 @@ const User = () => {
 
   return (
     <main className="main bg-dark">
-      {/* Header n'est rendu qu'une seule fois ici */}
       <HeaderAccount userName={userData ? userData.userName : ""} />
 
       {/* Affichage conditionnel du bouton ou du formulaire */}

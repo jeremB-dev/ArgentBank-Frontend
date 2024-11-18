@@ -1,20 +1,28 @@
 import { PropTypes } from "prop-types";
 // Import des images
-import chatIcon from "../../assets/img/icon-chat.png";
-import moneyIcon from "../../assets/img/icon-money.png";
-import securityIcon from "../../assets/img/icon-security.png";
+import chatIcon from "../../assets/img/icon-chat.webp";
+import moneyIcon from "../../assets/img/icon-money.webp";
+import securityIcon from "../../assets/img/icon-security.webp";
 
 const Features = ({ paragraph, title, image, alt }) => {
   // mapping des images
   const imageMap = {
-    "../assets/img/icon-chat.png": chatIcon,
-    "../assets/img/icon-money.png": moneyIcon,
-    "../assets/img/icon-security.png": securityIcon,
+    "icon-chat": chatIcon,
+    "icon-money": moneyIcon,
+    "icon-security": securityIcon,
   };
+  const imageName = image.split("/").pop().split(".")[0];
 
   return (
     <div className="feature-item">
-      <img src={imageMap[image]} alt={alt} className="feature-icon" />
+      <img
+        src={imageMap[imageName]}
+        alt={alt}
+        className="feature-icon"
+        loading="lazy"
+        width={100}
+        height={100}
+      />
       <h3 className="feature-item-title">{title}</h3>
       <p>{paragraph}</p>
     </div>
