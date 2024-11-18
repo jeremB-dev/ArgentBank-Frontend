@@ -1,22 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
+// Actions asynchrones pour les appels API, pour la connexion
 export const loginUser = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
+    // Appel API pour la connexion
     try {
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password }), // Corps de la requête; // Envoi des identifiants
       });
 
       const data = await response.json();
-      console.log("Response data:", data); // Pour déboguer
+      //console.log("Response data:", data); // Pour déboguer
 
       if (response.ok) {
-        localStorage.setItem("token", data.body.token);
+        localStorage.setItem("token", data.body.token); // Stockage du token dans le localStorage
         return data.body;
       }
       return rejectWithValue(data.message);
@@ -26,25 +28,25 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// Get Profile action
+// Pour obtenir le profil de l'utilisateur
 export const getUserProfile = createAsyncThunk(
   "auth/profile",
   async (_, { getState, rejectWithValue }) => {
     try {
-      const { token } = getState().auth;
+      const { token } = getState().auth; // Récupère le token du state
       const response = await fetch(
         "http://localhost:3001/api/v1/user/profile",
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // Ajoute le token dans l'en-tête de la requête
             "Content-Type": "application/json",
           },
         }
       );
 
       const data = await response.json();
-      console.log("Profile data:", data); // Pour déboguer
+      // console.log("Profile data:", data); // Pour déboguer
 
       if (response.ok) {
         return data.body;
@@ -56,12 +58,13 @@ export const getUserProfile = createAsyncThunk(
   }
 );
 
-// Update Profile action
+// Pour mettre à jour le profil de l'utilisateur
 export const updateUserProfile = createAsyncThunk(
   "auth/updateProfile",
   async ({ firstName, lastName }, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
+      // Appel API pour mettre à jour le profil
       const response = await fetch(
         "http://localhost:3001/api/v1/user/profile",
         {
@@ -70,12 +73,12 @@ export const updateUserProfile = createAsyncThunk(
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ firstName, lastName }),
+          body: JSON.stringify({ firstName, lastName }), // Corps de la requête; nouvelles données
         }
       );
 
       const data = await response.json();
-      console.log("Update profile data:", data); // Pour déboguer
+      // console.log("Update profile data:", data); // Pour déboguer
 
       if (response.ok) {
         return data.body;
@@ -88,13 +91,16 @@ export const updateUserProfile = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: "auth",
+  name: "auth", // Nom du slice
+  // État initial
   initialState: {
-    token: localStorage.getItem("token"),
-    userData: null,
-    status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
-    error: null,
+    token: localStorage.getItem("token"), // Token stocké localement
+    userData: null, // Données de l'utilisateur
+    status: "idle", // État de la requête ; 'idle' | 'loading' | 'succeeded' | 'failed'
+    error: null, // Message d'erreur
   },
+
+  // Reducers pour les actions synchrones
   reducers: {
     logout: (state) => {
       state.token = null;
@@ -107,6 +113,8 @@ const authSlice = createSlice({
       state.error = null;
     },
   },
+
+  // Reducers pour les actions asynchrones
   extraReducers: (builder) => {
     builder
       // Login cases
@@ -123,6 +131,7 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
+
       // Get Profile cases
       .addCase(getUserProfile.pending, (state) => {
         state.status = "loading";
@@ -135,7 +144,8 @@ const authSlice = createSlice({
         state.status = "failed";
         state.error = action.payload;
       })
-      // Update Profile cases
+
+      // mise a jour du profil
       .addCase(updateUserProfile.pending, (state) => {
         state.status = "loading";
       })

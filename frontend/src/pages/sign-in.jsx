@@ -4,14 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../store/authSlice";
 import Button from "../components/Button/Button";
 
+//
 const SignIn = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { status, error } = useSelector((state) => state.auth);
+  const [username, setUsername] = useState(""); // Pour stocker l'email
+  const [password, setPassword] = useState(""); // Pour stocker le mot de passe
+  const [rememberMe, setRememberMe] = useState(false); // Pour stocker le choix de l'utilisateur
+  const dispatch = useDispatch(); // Pour déclencher des actions
+  const navigate = useNavigate(); // Pour naviguer vers une autre page
+  const { status, error } = useSelector((state) => state.auth); // Pour lire l'état
 
+  // Fonction de connexion
   const handleLogin = async (e) => {
     e.preventDefault();
     try {

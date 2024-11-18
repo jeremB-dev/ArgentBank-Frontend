@@ -10,12 +10,20 @@ const User = () => {
   const { userData, token } = useSelector((state) => state.auth);
   const [isEditing, setIsEditing] = useState(false);
 
+  /**
+   * Effectue une action de type "getUserProfile" si le token et l'utilisateur sont présents.
+   * Récupère les données de l'utilisateur si le token est present.
+   */
   useEffect(() => {
     if (token && !userData) {
       dispatch(getUserProfile());
     }
   }, [dispatch, token, userData]);
 
+  /**
+   * Gere l'edition du nom de l'utilisateur.
+   * @param {string} newName - Le nouveau nom de l'utilisateur.
+   */
   const handleEditName = (newName) => {
     // Ici vous ajouterez plus tard la mise à jour du profil
     console.log(`New name: ${newName}`);
