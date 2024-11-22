@@ -1,6 +1,19 @@
 # ArgentBank
 
-![ArgentBank Icon](./src/assets/img/argentBankLogo.webp)
+---
+
+## Technologies
+
+![shield](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![shield](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![shield](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![shield](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![shield](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![shield](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+
+---
+
+<img alt = "Argent Bank Logo" src = "./assets/img/argentBankLogo.webp">
 
 Projet 11 du parcours "Intégrateur Web" chez OpenClassrooms.
 
