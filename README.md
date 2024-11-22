@@ -13,13 +13,14 @@
 
 ---
 
-<img alt = "Argent Bank Logo" src = "./assets/img/argentBankLogo.webp">
+<img alt="Argent Bank Logo" src="./frontend/src/assets/img/argentBankLogo.webp" width="60%" />
 
+\
 Projet 11 du parcours "Intégrateur Web" chez OpenClassrooms.
 
 L'objectif de la mission consiste à implémenter le front-end d'une application bancaire en utilisant React.
 
-## Mission
+# Mission
 
 ### Contexte
 
@@ -29,7 +30,7 @@ Vous travaillez avec Mila, la cheffe de projet, pour la mise en place du tableau
 
 ---
 
-## <details><summary><b>Mise en place du dashboard : phase 1</b></summary>
+### <details><summary><b>Mise en place du dashboard : phase 1</b></summary>
 
 ---
 
@@ -58,7 +59,7 @@ A noter lors de l'intégration du contenu des pages : nous aimerions mettre en p
 
 ---
 
-## <details><summary>Mise en place du dashboard : phase 2</summary>
+### <details><summary>Mise en place du dashboard : phase 2</summary>
 
 ---
 
