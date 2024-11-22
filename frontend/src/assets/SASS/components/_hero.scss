@@ -49,4 +49,17 @@
       }
     }
   }
+
+  @media (max-width: 419px) {
+    background-position: -40px -55px;
+
+    &-content {
+      position: absolute;
+      top: 40%;
+      left: 185px;
+      transform: translateY(-50%);
+      width: 150px;
+      margin: 0;
+    }
+  }
 }

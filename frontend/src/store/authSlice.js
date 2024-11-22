@@ -95,7 +95,7 @@ export const updateUserProfile = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: "auth", // Nom du slice
+  name: "auth",
   // État initial
   initialState: {
     token: localStorage.getItem("token"), // Token stocké localement
@@ -112,6 +112,7 @@ const authSlice = createSlice({
       state.status = "idle";
       state.error = null;
       localStorage.removeItem("token");
+      localStorage.removeItem("rememberedEmail");
     },
 
     clearError: (state) => {
@@ -122,45 +123,55 @@ const authSlice = createSlice({
   // Reducers pour les actions asynchrones
   extraReducers: (builder) => {
     builder
-      // ajout des cas pour loginUser
+
+      // gestion des états de connexion
+      // Cas où la requête de connexion est en cours
       .addCase(loginUser.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
+        state.status = "loading"; // Met à jour le statut pour indiquer le chargement
+        state.error = null; // Réinitialise les erreurs précédentes
       })
+      // Cas où la requête de connexion est réussie
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.token = action.payload.token;
-        state.error = null;
+        state.status = "succeeded"; // Met à jour le statut pour indiquer le succès
+        state.token = action.payload.token; // Stocke le token JWT reçu du serveur
+        state.error = null; // S'assure qu'il n'y a pas d'erreur affichée
       })
+      // Cas où la requête de connexion echoue
       .addCase(loginUser.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
+        state.status = "failed"; // Met à jour le statut pour indiquer l'échec
+        state.error = action.payload; // Stocke le message d'erreur reçu
       })
 
-      // ajout des cas pour getUserProfile
+      // Gestion des états pour la récupération du profil utilisateur
+      // Cas où la requête de récupération du profil est en cours
       .addCase(getUserProfile.pending, (state) => {
-        state.status = "loading";
+        state.status = "loading"; // Indique que les données sont en cours de chargement
       })
+      // Cas où la requête de récupération du profil est réussie
       .addCase(getUserProfile.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.userData = action.payload;
+        state.status = "succeeded"; // Indique que la requête est réussie
+        state.userData = action.payload; // Stocke les données de l'utilisateur reçues
       })
+      // Cas où la requête de récupération du profil echoue
       .addCase(getUserProfile.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
+        state.status = "failed"; // Indique que la récupération a echoué
+        state.error = action.payload; // Stocke le message d'erreur reçu
       })
 
-      // mise a jour du profil
+      // Gestion des états pour la mise à jour du profil utilisateur
+      // Cas où la requête de mise à jour du profil est en cours
       .addCase(updateUserProfile.pending, (state) => {
-        state.status = "loading";
+        state.status = "loading"; // Indique que la mise à jour est en cours
       })
+      // Cas où la requête de mise à jour du profil est réussie
       .addCase(updateUserProfile.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.userData = action.payload;
+        state.status = "succeeded"; // Indique que la mise à jour est réussie
+        state.userData = action.payload; // Met à jour les données utilisateur avec les nouvelles informations
       })
+      // Cas où la requête de mise à jour du profil a échoué
       .addCase(updateUserProfile.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload;
+        state.status = "failed"; // Indique que la mise à jour a échoué
+        state.error = action.payload; // Stocke le message d'erreur reçu
       });
   },
 });

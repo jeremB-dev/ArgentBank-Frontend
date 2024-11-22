@@ -32,8 +32,10 @@ const SignIn = () => {
       // Si "rememberMe" est coché, stocker le token dans le localStorage
       if (rememberMe) {
         localStorage.setItem("remeberedEmail", username);
+        localStorage.setItem("token", resultAction.payload.token);
       } else {
         localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("token");
       }
     } catch (error) {
       console.error("Failed to login", error);

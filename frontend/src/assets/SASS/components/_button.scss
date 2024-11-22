@@ -5,7 +5,7 @@
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
-  border-color: $primary-color; // Ajout de la bordure complète
+  border-color: $primary-color;
   background-color: $primary-color;
   color: $white;
   cursor: pointer;
@@ -28,6 +28,9 @@
   display: block;
   width: 100%;
   margin-top: 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  text-align: center;
 
   @media (min-width: 720px) {
     width: 200px;
@@ -37,24 +40,5 @@
 .edit-button {
   @extend %button-base;
   padding: 10px;
-}
-
-.transaction-button {
-  display: block;
-  width: 200px;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: $primary-color;
-  background-color: $primary-color;
-  color: $white;
-  text-decoration: none;
-  text-align: center;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: color.adjust($primary-color, $lightness: -10%);
-  }
+  font-size: 0.9rem;
 }

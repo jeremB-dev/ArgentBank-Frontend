@@ -27,13 +27,19 @@
 }
 
 .main-nav-item {
-  text-decoration: none;
   margin-right: 0.5rem;
   text-align: center;
   white-space: nowrap;
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: 5px;
 
   &:hover {
     text-decoration: underline;
+  }
+
+  &:visited {
+    color: $black;
   }
 
   @media screen and (max-width: 720px) {
@@ -47,6 +53,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none;
 
   @media screen and (max-width: 720px) {
     flex-direction: row;
