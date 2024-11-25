@@ -34,9 +34,7 @@ const NavBar = () => {
               <i className="fa fa-user-circle"></i>
               <span>
                 &nbsp;
-                {userData
-                  ? `${userData.firstName} ${userData.lastName}`
-                  : "User"}
+                {userData ? userData.userName : "User"}
               </span>
             </Link>
             <Link to="/" className="main-nav-item" onClick={handleLogout}>
