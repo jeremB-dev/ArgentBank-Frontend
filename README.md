@@ -96,6 +96,8 @@ Vous pouvez utiliser la page des transactions présentée dans les maquettes pou
 - **Mettre en place les bonnes pratiques du Green IT**
 - **Proposer les routes API pour les manipulations sur les transactions en utilisant Swagger**
 
+<a name="user-accounts"></a>
+
 ### Comptes / Connexion
 
 | Prénom | Nom    | Email            | Mot de passe |
@@ -122,12 +124,13 @@ mongo --version
 
 - Vous devez avoir Node et `npm` installés localement sur votre machine.
 
-> [!ATTENTION]  
-> Le [backend](https://github.com/OpenClassrooms-Student-Center/ArgentBank-Backend) doit également être installé pour lancer ce projet.
-
 ## Configuration du projet
 
 ### Installation Backend
+
+<span style="color:red;">**ATTENTION** :</span>
+
+> **Le [backend](https://github.com/OpenClassrooms-Student-Center/ArgentBank-Backend) doit également être installé pour lancer ce projet. (à lancer dans une nouvelle fenêtre de votre IDE.)**
 
 Pour installer le backend, rendez-vous dans le dossier `backend` et lancez la commande suivante :
 
@@ -142,21 +145,7 @@ npm run dev:server
 npm run populate-db
 ```
 
-Après avoir exécuté le script populate-db, vous devriez avoir deux utilisateurs dans votre base de données :
-
-#### Tony Stark
-
-- First Name: `Tony`
-- Last Name: `Stark`
-- Email: `tony@stark.com`
-- Password: `password123`
-
-#### Steve Rogers
-
-- First Name: `Steve`,
-- Last Name: `Rogers`,
-- Email: `steve@rogers.com`,
-- Password: `password456`
+Après avoir exécuté le script populate-db, vous devriez avoir [deux utilisateurs](#user-accounts) dans votre base de données.
 
 Votre serveur devrait maintenant être lancé sur http://localhost:3001 et vous aurez désormais deux utilisateurs dans votre base de données MongoDB !
 
