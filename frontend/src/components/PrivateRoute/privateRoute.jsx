@@ -3,17 +3,17 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
-// Composant qui permet de proteger les routes privées.
+// Composant de protection des routes nécessitant une authentification
 const PrivateRoute = ({ children }) => {
   const { token } = useSelector((state) => state.auth);
-  // Si le token n'est pas présent, rediriger vers la page de connexion.
+  // Redirige vers la page de connexion si l'utilisateur n'est pas authentifié
   if (!token) {
     return <Navigate to="/sign-in" />;
   }
-
   return children;
 };
 
+// Validation des props du composant
 PrivateRoute.propTypes = {
   children: PropTypes.node.isRequired,
 };

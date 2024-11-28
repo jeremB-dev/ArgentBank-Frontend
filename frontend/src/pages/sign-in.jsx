@@ -4,16 +4,18 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../store/authSlice";
 import Button from "../components/Button/Button";
 
-//
+// Composant de connexion gérant le formulaire d'authentification
 const SignIn = () => {
-  const [username, setUsername] = useState(""); // Pour stocker l'email
-  const [password, setPassword] = useState(""); // Pour stocker le mot de passe
-  const [rememberMe, setRememberMe] = useState(false); // Pour stocker le choix de l'utilisateur
-  const dispatch = useDispatch(); // Pour déclencher des actions
-  const navigate = useNavigate(); // Pour naviguer vers une autre page
-  const { status, error } = useSelector((state) => state.auth); // Pour lire l'état
+  // États du formulaire
+  const [username, setUsername] = useState(""); // Email de l'utilisateur
+  const [password, setPassword] = useState(""); // Mot de passe
+  const [rememberMe, setRememberMe] = useState(false); // Option "Se souvenir de moi"
+  // Hooks React/Redux pour la gestion d'état et la navigation
+  const dispatch = useDispatch(); // Dispatch des actions Redux
+  const navigate = useNavigate(); // Navigation programmatique
+  const { status, error } = useSelector((state) => state.auth); // État de l'authentification
 
-  // Fonction de connexion
+  // Gère la soumission du formulaire : authentifie l'utilisateur et redirige vers son profil en cas de succès
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -29,7 +31,7 @@ const SignIn = () => {
         navigate("/user");
       }
 
-      // Si "rememberMe" est coché, stocker le token dans le localStorage
+      // Gère la persistance des données de connexion selon le choix "Se souvenir de moi"
       if (rememberMe) {
         localStorage.setItem("remeberedEmail", username);
         localStorage.setItem("token", resultAction.payload.token);
@@ -42,6 +44,7 @@ const SignIn = () => {
     }
   };
 
+  // Met à jour l'état "Se souvenir de moi" selon la valeur de la checkbox
   const handleRememberMe = (e) => {
     setRememberMe(e.target.checked);
   };

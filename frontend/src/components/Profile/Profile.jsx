@@ -2,9 +2,12 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
 
+// Composant modal de modification du profil utilisateur
 const Profile = ({ onClose, onSave, currentName }) => {
+  // État local pour gérer la saisie du nouveau nom d'utilisateur
   const [userName, setUserName] = useState(currentName);
 
+  // Gère la soumission du formulaire et la mise à jour du nom d'utilisateur
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(userName);
@@ -31,9 +34,9 @@ const Profile = ({ onClose, onSave, currentName }) => {
 };
 
 Profile.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  onSave: PropTypes.func.isRequired,
-  currentName: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired, // Fonction de fermeture de la modal
+  onSave: PropTypes.func.isRequired, // Fonction de sauvegarde du nom d'utilisateur
+  currentName: PropTypes.string.isRequired, // Nom d'utilisateur actuel
 };
 
 export default Profile;

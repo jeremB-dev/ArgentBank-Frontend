@@ -11,6 +11,7 @@ const Features = ({ paragraph, title, image, alt }) => {
     "icon-money": moneyIcon,
     "icon-security": securityIcon,
   };
+  // Extrait le nom de l'image sans le chemin et l'extension du fichier
   const imageName = image.split("/").pop().split(".")[0];
 
   return (

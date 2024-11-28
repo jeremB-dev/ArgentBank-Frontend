@@ -1,17 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Actions asynchrones pour les appels API, pour la connexion
+// Action Redux Thunk : gère l'authentification utilisateur via l'API
 export const loginUser = createAsyncThunk(
   "auth/login",
   async ({ email, password, rememberMe }, { rejectWithValue }) => {
     // Appel API pour la connexion
     try {
+      // Envoi de la requête d'authentification à l'API
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }), // Corps de la requête; // Envoi des identifiants
+        body: JSON.stringify({ email, password }), // Données d'authentification
       });
 
       const data = await response.json();

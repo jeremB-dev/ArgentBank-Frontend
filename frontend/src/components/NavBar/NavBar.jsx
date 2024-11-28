@@ -10,14 +10,14 @@ const NavBar = () => {
   const navigate = useNavigate();
   const { token, userData } = useSelector((state) => state.auth);
 
-  // Effectue une action de type "getUserProfile" si le token et l'utilisateur sont presents.
+  // Récupère le profil utilisateur si le token existe mais que les données utilisateur ne sont pas encore chargées
   useEffect(() => {
     if (token && !userData) {
       dispatch(getUserProfile());
     }
   }, [dispatch, token, userData]);
 
-  // Gere la deconnexion de l'utilisateur.
+  // Déconnecte l'utilisateur, vide le state et redirige vers la page d'accueil
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
